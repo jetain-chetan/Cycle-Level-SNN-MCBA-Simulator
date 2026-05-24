@@ -1,0 +1,79 @@
+Cycle-Level-SNN-MCBA-Simulator/
+├── CMakeLists.txt                 # Build configuration
+├── README.md                       # Project overview, setup, usage
+├── LICENSE                         # License file
+├── .gitignore                      # Git ignore patterns (C++, build artifacts)
+│
+├── docs/                           # Documentation
+│   ├── architecture.md             # System architecture overview
+│   ├── design_decisions.md         # Key design choices and rationale
+│   ├── simulation_model.md         # Simulation model details
+│   └── api.md                      # API documentation
+│
+├── src/
+│   ├── core/                       # Core simulation engine
+│   │   ├── neuron.h / neuron.cpp
+│   │   ├── synapse.h / synapse.cpp
+│   │   ├── spike_event.h
+│   │   └── clock.h / clock.cpp     # Global cycle counter
+│   │
+│   ├── mcba/                       # Memristor Crossbar Array module
+│   │   ├── memristor.h / memristor.cpp
+│   │   ├── crossbar_array.h / crossbar_array.cpp
+│   │   ├── memory_device.h        # Interface for memory device behavior
+│   │   └── read_write_controller.h / read_write_controller.cpp
+│   │
+│   ├── snn/                        # SNN-specific components
+│   │   ├── network.h / network.cpp # Main SNN network class
+│   │   ├── layer.h / layer.cpp
+│   │   ├── neuron_model.h         # Interface for different neuron models (LIF, etc.)
+│   │   └── plasticity.h / plasticity.cpp # STDP or other learning rules
+│   │
+│   ├── stats/                      # Performance monitoring & statistics
+│   │   ├── metrics.h / metrics.cpp
+│   │   ├── event_logger.h / event_logger.cpp
+│   │   └── performance_monitor.h / performance_monitor.cpp
+│   │
+│   ├── utils/                      # Utility functions
+│   │   ├── logger.h / logger.cpp
+│   │   ├── config_parser.h / config_parser.cpp
+│   │   └── math_utils.h
+│   │
+│   └── main.cpp                    # Entry point / CLI simulator
+│
+├── include/                        # Public headers (if needed)
+│   └── simulator.h
+│
+├── test/
+│   ├── CMakeLists.txt
+│   ├── unit_tests/
+│   │   ├── test_neuron.cpp
+│   │   ├── test_memristor.cpp
+│   │   ├── test_crossbar_array.cpp
+│   │   └── test_network.cpp
+│   │
+│   └── integration_tests/
+│       ├── test_snn_mcba_integration.cpp
+│       └── test_end_to_end_simulation.cpp
+│
+├── examples/                       # Example simulations/configurations
+│   ├── simple_network.cpp
+│   ├── mnist_snn.cpp               # If targeting ML workloads
+│   └── configs/
+│       ├── small_network.json      # Configuration files
+│       └── large_network.json
+│
+├── scripts/                        # Build & analysis scripts
+│   ├── build.sh
+│   ├── run_tests.sh
+│   └── plot_results.py             # Post-sim analysis
+│
+├── results/                        # (gitignore) Simulation outputs
+│   ├── metrics.csv
+│   ├── traces.log
+│   └── plots/
+│
+└── .github/
+    └── workflows/
+        ├── build.yml               # CI/CD pipeline
+        └── tests.yml
